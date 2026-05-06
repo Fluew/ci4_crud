@@ -26,3 +26,7 @@
     </tr>
     <?php endforeach; ?>
 </table>
+
+<div class="mt-3">
+    <?= $pager->links() ?>
+</div>

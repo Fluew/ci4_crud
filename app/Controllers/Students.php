@@ -16,10 +16,12 @@ class Students extends BaseController
             $data['students'] = $model
                 ->like('name', $keyword)
                 ->orLike('email', $keyword)
-                ->findAll();
+                ->paginate(5);
         } else {
-            $data['students'] = $model->findAll();
+            $data['students'] = $model->paginate(5);
         }
+
+        $data['pager'] = $model->pager;
 
         return view('students/index', $data);
     }

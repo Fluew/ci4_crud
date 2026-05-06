@@ -1,32 +1,63 @@
-<h2>Students</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student System</title>
 
-<a href="/students/create">Add Student</a>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-<form method="get">
-    <input type="text" name="keyword" placeholder="Search name or email">
-    <button type="submit">Search</button>
-    <a href="/students">Reset</a>
-</form>
+<body>
 
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-    </tr>
+<div class="container mt-4">
 
-    <?php foreach ($students as $student): ?>
-    <tr>
-        <td><?= $student['name'] ?></td>
-        <td><?= $student['email'] ?></td>
-        <td>
-            <a href="/students/edit/<?= $student['id'] ?>">Edit</a>
-            <a href="/students/delete/<?= $student['id'] ?>">Delete</a>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Student Management System</h2>
+        <a href="/students/create" class="btn btn-primary">+ Add Student</a>
+    </div>
 
-<div class="mt-3">
-    <?= $pager->links() ?>
+    <!-- SEARCH -->
+    <form method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Search name or email">
+            <button class="btn btn-dark">Search</button>
+            <a href="/students" class="btn btn-secondary">Reset</a>
+        </div>
+    </form>
+
+    <!-- TABLE -->
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th width="200">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach ($students as $student): ?>
+            <tr>
+                <td><?= $student['id'] ?></td>
+                <td><?= $student['name'] ?></td>
+                <td><?= $student['email'] ?></td>
+                <td>
+                    <a href="/students/edit/<?= $student['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/students/delete/<?= $student['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+
+    </table>
+
+    <!-- PAGINATION -->
+    <div class="mt-3">
+        <?= $pager->links() ?>
+    </div>
+
 </div>
+
+</body>
+</html>
